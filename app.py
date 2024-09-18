@@ -21,9 +21,9 @@ def author():
     return """<!doctype html>
         <html>
             <body>
-                <p>Студент: """ + name + """</p>
-                <p>Группа: """ + group + """</p>
-                <p>Факультет: """ + faculty + """</p>
+                <p>Студент: """+ name +"""</p>
+                <p>Группа: """+ group +"""</p>
+                <p>Факультет: """+ faculty +"""</p>
                 <a href="/web">web</a>
             </body>
         </html>"""
@@ -37,6 +37,22 @@ def oak():
     <body>
         <h1>Дуб</h1>
         <img src="''' + '''">
+    </body>
+</html>
+'''
+
+count = 0 
+
+@app.route('/lab1/counter')
+def counter():
+    global count
+    count += 1
+    return '''
+<!doctype html>
+<html>
+    <body>
+        Сколько раз вы сюда заходили: ''' + str(count) + ''' 
+        <a href="/lab1/counter0">очистка</a>
     </body>
 </html>
 '''
