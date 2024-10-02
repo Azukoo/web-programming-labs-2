@@ -166,10 +166,6 @@ def lab1():
             </li>
 
             <li>
-                <a href="/lab1/author">Автор</a>
-            </li>
-
-            <li>
                 <a href="/lab1/info">Роут info</a>
             </li>
             <li>
