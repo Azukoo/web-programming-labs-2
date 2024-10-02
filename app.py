@@ -3,12 +3,13 @@ app = Flask(__name__)
 
 @app.errorhandler(404)
 def not_found(err):
+    path=url_for("static", filename='i.webp')
     return '''
     <!doctype html>
 <html>
     <body style="background-color:yellow">
        <h1 style="text-align: center;">Такой страницы не существует!<h1>
-       <p style="text-align:center;"></p>
+       <p style="text-align:center;"><img src="''' + path + '''" width="700" style="padding: 40px;"></p>
     </body>
 </html>
 ''', 404
