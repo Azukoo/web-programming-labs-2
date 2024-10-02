@@ -45,7 +45,7 @@ def not_found403(err):
 <!doctype html>
 <html>
     <body style="background-color: red">
-        <h1 style="text-align: center;">Доступ к ресурсу запрещен! >:(<h1>
+        <h1 style="text-align: center;">Доступ к ресурсу запрещен!></h1>
     </body>
 </html>
 ''', 403
