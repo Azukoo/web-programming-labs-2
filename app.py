@@ -339,7 +339,6 @@ def cont():
 </html>
 '''
 
-'''
 a=33
 b=0
 @app.route('/lab1/err5')
