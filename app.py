@@ -178,10 +178,6 @@ def lab1():
             <li>
                 <a href="/lab1/err5">Ошибка 505</a>
             </li>
-
-            <li>
-                <a href="/lab1/created">Ошибка 505</a>
-            </li>
         </ol>
     </main>
 
