@@ -164,7 +164,7 @@ def lab1():
             <li>
                 <a href="/lab1/counter">Счетчик</a>
             </li>
-
+ 
             <li>
                 <a href="/lab1/info">Роут info</a>
             </li>
