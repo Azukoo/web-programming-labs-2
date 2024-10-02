@@ -3,7 +3,6 @@ app = Flask(__name__)
 
 @app.errorhandler(404)
 def not_found(err):
-    path=url_for("static")
     return '''
     <!doctype html>
 <html>
@@ -25,7 +24,7 @@ def not_found400(err):
 </html>
 ''', 400
 
-@app.errorhandler("/lab1/er4")
+@app.errorhandler(400)
 def er4(e):
   return not_found400(), 400
 
@@ -78,8 +77,8 @@ def not_found500(err):
     return '''
     <!doctype html>
 <html>
-    <body style="background-color: pink">
-        <h1 style="text-align: center;">Внутренняя ошибка сервера(((<h1>
+    <body style="background-color: blue">
+        <h1 style="text-align: center;">Внутренняя ошибка сервера!<h1>
     </body>
 </html>
 ''', 500
@@ -115,7 +114,7 @@ def index():
 
     <footer>
         <hr>
-        &copy; Санданова Виктория, ФБИ-22, 2 курс, 2024
+        &copy; Санданова Виктория, ФБИ-22, 3 курс, 2024
     </footer>
 </body>
 </html>
@@ -179,12 +178,16 @@ def lab1():
             <li>
                 <a href="/lab1/err5">Ошибка 505</a>
             </li>
+
+            <li>
+                <a href="/lab1/created">Ошибка 505</a>
+            </li>
         </ol>
     </main>
 
     <footer>
         <hr>
-        &copy; Барашкова Светлана, ФБИ-22, 2 курс, 2024
+        &copy; Санданова Виктория, ФБИ-22, 3 курс, 2024
     </footer>
 </body>
 </html>
@@ -221,9 +224,13 @@ def author():
 @app.route('/lab1/oak')
 def oak():
     path = url_for("static", filename="oak.jpg")
+    path2 = url_for("static", filename='lab1.css')
     return '''
 <!doctype html>
 <html>
+    <head>
+    <link rel="stylesheet" href="''' + path2 + '''">
+    </head>
     <body>
         <h1>Дуб</h1>
         <img src="''' +path+ '''">
