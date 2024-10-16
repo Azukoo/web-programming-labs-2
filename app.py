@@ -437,4 +437,24 @@ def clear_flowers():
     return '''<h1>Список цветов очищен!</h1>
               <a href="/lab2/flowers">Вернуться к списку цветов</a>'''
 
+@app.route('/lab2/calc/<int:a>/<int:b>')
+def calculate(a, b):
+    results = {
+        'sum': a + b,
+        'difference': a - b,
+        'product': a * b,
+        'quotient': "Ошибка: деление на ноль" if b == 0 else a / b,
+        'power': a ** b
+    }
+
+@app.route('/lab2/calc/')
+def default_calc():
+    # Перенаправление на /lab2/calc/1/1
+    return redirect(url_for('calc', a=1, b=1))
+
+@app.route('/lab2/calc/<int:a>')
+def redirect_to_default_b(a):
+    # Перенаправление на /lab2/calc/a/1
+    return redirect(url_for('calc', a=a, b=1))
+
 
