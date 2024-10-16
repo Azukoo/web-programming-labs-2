@@ -362,14 +362,24 @@ flower_list = ['роза', 'тюльпан', 'незабудка', 'ромашк
 @app.route('/lab2/flowers/<int:flower_id>')
 def flowers(flower_id):
     if flower_id >= len(flower_list):
-        return "Упс! Такого цветка нет :(", 404
+        return (""" <h1> Упс! Такого цветка нет :(" </h1>
+                <a href="/lab2/flowers">Вернуться к списку цветов</a>
+                """), 404
     else:
-        return "цветок: " + flower_list[flower_id]
+        return (f""" <h1> Цветок: {flower_list[flower_id]} </h1>
+    <a href="/lab2/flowers">Вернуться к списку цветов</a>
+""")
+    
+@app.route('/lab2/add_flower/', 
+           defaults={'name': None})
 
 @app.route('/lab2/add_flower/<name>')
 def add_flower(name):
-    flower_list.append(name) #Добавление имени в список в к общему числу
-    return f''' 
+    if not name:  # Проверка, что имя цветка не пустое
+        return "Упс! Вы не задали имя цветка :(", 400
+    else:
+        flower_list.append(name)  # Добавление имени в список
+        return f'''
 <!doctype html>
 <html>
     <body>
@@ -377,17 +387,54 @@ def add_flower(name):
     <p>Название нового цветка: {name} </p>
     <p>Всего цветов: {len(flower_list)}</p>
     <p>Полный список: {flower_list}</p>
+    <p><a href="{url_for('get_flowers')}">Посмотреть все цветы</a></p>
     </body>
 </html>
 '''  
+
+@app.route('/lab2/flowers')
+def get_flowers():
+    return f''' 
+<!doctype html>
+<html>
+    <body>
+    <h1>Список всех цветов</h1>
+            {"".join(f"<li><a href='/lab2/flowers/{i}'>{flower}</a></li>" for i, flower in enumerate(flower_list))}
+    </ul>
+    <p>Всего цветов: {len(flower_list)}</p>
+    <p><a href="{url_for('clear_flowers')}">Очистить список цветов</a></p>
+    </body>
+</html>
+'''
+
 @app.route('/lab2/example')
 def example():
-    name = 'Санданова Виктория'
-    group = 'ФБИ-22'
-    course = '3 Курс'
-    labwork = 'Лабораторная работа 2'
-    return render_template('example.html', name=name, group=group, course=course, labwork=labwork)
-   
+    name ,group, course, lab_num = 'Санданова Виктория', 'ФБИ-22', '3 Курс', 'Лабораторная работа 2' 
+    fruits = [
+        {'name': 'яблоки', 'price': 100}, 
+        {'name': 'груши', 'price': 120},
+        {'name': 'апельсины', 'price': 80},
+        {'name': 'мандарины', 'price': 95}, 
+        {'name': 'манго','price': 321} 
+    ]
 
+    return render_template('example.html', 
+                           name=name, group=group, 
+                           course=course,lab_num=lab_num, fruits=fruits)
+
+@app.route('/lab2/')
+def lab2():
+    return render_template('lab2.html')
+   
+@app.route('/lab2/filters')
+def filters():
+    phrase = "О <b>сколько</b> <u>нам</u> <i>открытий</i> чудных..."
+    return render_template('filter.html', phrase = phrase)
+
+@app.route('/lab2/clear_flowers')
+def clear_flowers():
+    flower_list.clear()  # Очистка списка цветов
+    return '''<h1>Список цветов очищен!</h1>
+              <a href="/lab2/flowers">Вернуться к списку цветов</a>'''
 
 
