@@ -224,3 +224,17 @@ def cont():
 </html>
 '''
 
+
+a=33
+b=0
+@lab1.route('/lab1/err5')
+def err5():
+    c = a/b
+    return '''
+<!doctype html>
+<html>
+    <body>
+        Равно: '''+ str(c) +'''
+    </body>
+</html>
+'''
