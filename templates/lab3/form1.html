@@ -6,11 +6,6 @@
     <title>Санданова Виктория. {% block lab %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='static\favicon.jpg') }}" type="image/x-icon">
-    <script>
-        error (
-
-        )
-    </script>
 </head>
 <body>
     <header>
@@ -27,7 +22,7 @@
             <div>Ваш возраст: {{ age }}</div>
             <div>Ваш пол: {{ 'мужской' if sex == 'male' else 'женский' }}</div>
             <div>
-                <a href="/lab3/form1/">Заново</a>
+                <a href="/lab3/form1">Заново</a>
             </div>
 
             {% else %}
@@ -52,13 +47,13 @@
                     <select name="sex">
                         <option value="male" {{ sex == 'male' and 'selected' }}>Мужчина</option>
                         <option value="female"{{ sex == 'female' and 'selected' }}>Женщина</option>
+                    </select>
                 </div>
-
                 <div>
                     <button type="submit">Отправить</button>
                 </div>
+                
             </form>
-
             {% endif %}
         {% endblock %}
     </main>
