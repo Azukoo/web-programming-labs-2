@@ -60,7 +60,7 @@ def get_flowers():
             {"".join(f"<li><a href='/lab2/flowers/{i}'>{flower}</a></li>" for i, flower in enumerate(flower_list))}
     </ul>
     <p>Всего цветов: {len(flower_list)}</p>
-    <p><a href="{url_for('clear_flowers')}">Очистить список цветов</a></p>
+    <p><a href="{url_for('lab2.clear_flowers')}">Очистить список цветов</a></p>
     </body>
 </html>
 '''
@@ -115,7 +115,7 @@ def calc(a, b):
 @lab2.route('/lab2/calc/')
 def default_calc():
     # Перенаправление на /lab2/calc/1/1
-    return redirect(url_for('calc', a=1, b=1))
+    return redirect(url_for('lab2.calc', a=1, b=1))
 
 
 @lab2.route('/lab2/calc/<int:a>')
