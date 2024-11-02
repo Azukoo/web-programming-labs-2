@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Санданова Виктория. {% block lab %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='static\favicon.jpg') }}" type="image/x-icon">
+</head>
+<body>
+    <header>
+        WEB-программирование, часть 2. {{ self.lab() }}
+    </header>
+
+    <main>
+        <h1>Оформление железнодорожного билета</h1>
+    <form method="POST">
+        <label>ФИО пассажира:</label>
+        <input type="text" name="fio" required><br>
+
+        <label>Полка:</label>
+        <select name="shelf" required>
+            <option value="lower">Нижняя</option>
+            <option value="upper">Верхняя</option>
+            <option value="lower_side">Нижняя боковая</option>
+            <option value="upper_side">Верхняя боковая</option>
+        </select><br>
+
+        <label>С бельём:</label>
+        <input type="checkbox" name="linen"><br>
+
+        <label>С багажом:</label>
+        <input type="checkbox" name="luggage"><br>
+
+        <label>Возраст:</label>
+        <input type="number" name="age" required min="1" max="120"><br>
+
+        <label>Пункт выезда:</label>
+        <input type="text" name="departure" required><br>
+
+        <label>Пункт назначения:</label>
+        <input type="text" name="arrival" required><br>
+
+        <label>Дата поездки:</label>
+        <input type="date" name="travel_date" required><br>
+
+        <label>Страховка:</label>
+        <input type="checkbox" name="insurance"><br>
+
+        <button type="submit">Оформить билет</button>
+    </form>
+    
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    </main>
+</body>
+</html>
