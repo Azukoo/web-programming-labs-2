@@ -1,6 +1,6 @@
 from flask import Flask, url_for, redirect, render_template
-from lab1 import lab1
-from lab2 import lab2
+from static.lab1.lab1 import lab1
+from static.lab2.lab2 import lab2
 from lab3 import lab3
 
 app = Flask(__name__)
@@ -10,7 +10,7 @@ app.register_blueprint(lab3)
 
 @app.errorhandler(404)
 def not_found(err):
-    path=url_for("static", filename='i.webp')
+    path=url_for("static", filename='/lab2/i.webp')
     return '''
     <!doctype html>
 <html>
