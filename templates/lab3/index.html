@@ -1,64 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Санданова Виктория. {% block lab %}{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='static\favicon.jpg') }}" type="image/x-icon">
-</head>
-<body>
-    <header>
-        WEB-программирование, часть 2. {{ self.lab() }}
-    </header>
+{% extends "base.html" %}
 
-    <main>
-        <h1>Оформление железнодорожного билета</h1>
-    <form method="POST">
-        <label>ФИО пассажира:</label>
-        <input type="text" name="fio" required><br>
+{% block lab %}Лабораторная работа 3{% endblock %}
 
-        <label>Полка:</label>
-        <select name="shelf" required>
-            <option value="lower">Нижняя</option>
-            <option value="upper">Верхняя</option>
-            <option value="lower_side">Нижняя боковая</option>
-            <option value="upper_side">Верхняя боковая</option>
-        </select><br>
-
-        <label>С бельём:</label>
-        <input type="checkbox" name="linen"><br>
-
-        <label>С багажом:</label>
-        <input type="checkbox" name="luggage"><br>
-
-        <label>Возраст:</label>
-        <input type="number" name="age" required min="1" max="120"><br>
-
-        <label>Пункт выезда:</label>
-        <input type="text" name="departure" required><br>
-
-        <label>Пункт назначения:</label>
-        <input type="text" name="arrival" required><br>
-
-        <label>Дата поездки:</label>
-        <input type="date" name="travel_date" required><br>
-
-        <label>Страховка:</label>
-        <input type="checkbox" name="insurance"><br>
-
-        <button type="submit">Оформить билет</button>
-    </form>
-    
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
-    </main>
-</body>
-</html>
+{% block main %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container2 {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 10px 0 5px;
+            color: #555;
+        }
+        input[type="number"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            color: white;
+            background: #5cb85c;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #4cae4c;
+        }
+    </style>
+    <div class="container2">
+            <h1>Поиск товаров.</h1>
+            <h2>Введите сумму:</h2>
+            <form action="/search" method="POST">
+              <label for="min_price">Минимальная цена:</label>
+              <input type="number" id="min_price" name="min_price" required>
+              
+              <label for="max_price">Максимальная цена:</label>
+              <input type="number" id="max_price" name="max_price" required>
+              
+              <button type="submit">Искать</button>
+          </form>
+    </div>
+{% endblock %}
+<footer>
+  &copy;Санданова Виктория, ФБИ-22, 3 Курс, 2024
+</footer>
