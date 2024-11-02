@@ -5,9 +5,8 @@
 {% block main %}
     <h1>Cookies</h1>
     <div class="container">
-        <h1>Спасибо!</h1>
-        <p>Ваш заказ оплачен на сумму <strong>{{ price }} </strong> рублей. Ожидайте доставку.</p>
-        <a href="/lab3/order" class="btn">Вернуться к заказу</a>
+    <h1>Спасибо, ваш заказ оплачен на сумму {{ price }} рублей, ожидайте доставку</h1>
+    <p><a href="{{ url_for('lab3.order') }}">Вернуться к заказу</a></p>
     </div>
 {% endblock %}
 
