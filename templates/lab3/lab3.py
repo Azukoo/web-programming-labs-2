@@ -167,3 +167,39 @@ def ticket():
 
     return render_template('lab3/ticket.html')
 
+products = [
+    {"name": "iPhone 13", "price": 70000, "color": "Синий", "brand": "Apple"},
+    {"name": "iPhone 13 Pro", "price": 100000, "color": "Графитовый", "brand": "Apple"},
+    {"name": "iPhone 14", "price": 80000, "color": "Красный", "brand": "Apple"},
+    {"name": "iPhone 14 Pro", "price": 110000, "color": "Золотистый", "brand": "Apple"},
+    {"name": "iPhone 15", "price": 90000, "color": "Черный", "brand": "Apple"},
+    {"name": "iPhone 15 Pro", "price": 120000, "color": "Серебристый", "brand": "Apple"},
+    {"name": "iPhone SE", "price": 40000, "color": "Белый", "brand": "Apple"},
+    {"name": "iPhone 14 Plus", "price": 95000, "color": "Синий", "brand": "Apple"},
+    {"name": "iPhone 15 Plus", "price": 105000, "color": "Розовый", "brand": "Apple"},
+    {"name": "iPhone 12", "price": 65000, "color": "Черный", "brand": "Apple"},
+    {"name": "iPhone 12 Pro", "price": 95000, "color": "Золотистый", "brand": "Apple"},
+    {"name": "iPhone 11", "price": 55000, "color": "Зеленый", "brand": "Apple"},
+    {"name": "iPhone 11 Pro", "price": 85000, "color": "Космический серый", "brand": "Apple"},
+    {"name": "iPhone XS", "price": 70000, "color": "Серебристый", "brand": "Apple"},
+    {"name": "iPhone XR", "price": 50000, "color": "Красный", "brand": "Apple"},
+    {"name": "iPhone X", "price": 65000, "color": "Графитовый", "brand": "Apple"},
+    {"name": "iPhone 7", "price": 30000, "color": "Золотистый", "brand": "Apple"},
+    {"name": "iPhone 8", "price": 35000, "color": "Черный", "brand": "Apple"},
+    {"name": "iPhone 8 Plus", "price": 40000, "color": "Белый", "brand": "Apple"},
+    {"name": "iPhone 6S", "price": 25000, "color": "Синий", "brand": "Apple"},
+    {"name": "iPhone SE (2-е поколение)", "price": 35000, "color": "Красный", "brand": "Apple"},
+]
+
+@lab3.route('/lab3/index')
+def index():
+    return render_template('/lab3/index.html')
+
+@lab3.route('/search', methods=['POST'])
+def search():
+    min_price = int(request.form.get('min_price', 0))
+    max_price = int(request.form.get('max_price', 0))
+    filtered_products = [p for p in products if min_price <= p['price'] <= max_price]
+    
+    return render_template('/lab3/results.html', products=filtered_products)
+
