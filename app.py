@@ -2,11 +2,13 @@ from flask import Flask, url_for, redirect, render_template
 from static.lab1.lab1 import lab1
 from static.lab2.lab2 import lab2
 from templates.lab3.lab3 import lab3
+from templates.lab4.lab4 import lab4
 
 app = Flask(__name__)
 app.register_blueprint(lab1)
 app.register_blueprint(lab2)
 app.register_blueprint(lab3)
+app.register_blueprint(lab4)
 
 @app.errorhandler(404)
 def not_found(err):
@@ -121,6 +123,9 @@ def index():
                 </li>
                 <li>
                     <a href="/lab3">Лабораторная работа 3</a>
+                </li>
+                <li>
+                    <a href="/lab4">Лабораторная работа 4</a>
                 </li>
             </ol>
         </div>
