@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block lab %}Умножение{% endblock %}
+
+{% block main %}
+    <h1>Возведение в степень</h1>
+    <form action="{{ url_for('lab4.power_op') }}" method="POST">
+        <label for="x1">Основание:</label>
+        <input type="text" id="x1" name="x1">
+        <br>
+        <label for="x2">Экспонента:</label>
+        <input type="text" id="x2" name="x2">
+        <br>
+        <input type="submit" value="Возвести в степень">
+    </form>
+{% endblock %}

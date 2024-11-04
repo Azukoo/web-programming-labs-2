@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block lab %}Вычитание{% endblock %}
+
+{% block main %}
+    <h1>Результат Вычитания</h1>
+
+    {% if error %}
+        <div style="color: red;">{{ error }}</div>
+    {% else %}
+        <div class="result">
+            <p>Разность {{ x1 }} - {{ x2 }} равна: {{ result }}</p>
+        </div>
+    {% endif %}
+    
+    <a href="{{ url_for('lab4.subtract_form') }}">Вернуться назад</a>
+    
+    {% endblock %}
+    
+    

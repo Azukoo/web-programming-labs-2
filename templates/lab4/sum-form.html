@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block lab %}Суммирование{% endblock %}
+
+{% block main %}
+    <h1>Суммирование</h1>
+    <form action="{{ url_for('lab4.sum_op') }}" method="POST">
+        <label for="x1">Первое число:</label>
+        <input type="text" id="x1" name="x1">
+        <br>
+        <label for="x2">Второе число:</label>
+        <input type="text" id="x2" name="x2">
+        <br>
+        <input type="submit" value="Суммировать">
+    </form>
+{% endblock %}
