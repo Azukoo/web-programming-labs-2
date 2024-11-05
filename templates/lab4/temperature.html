@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 4{% endblock %}
+
+{% block main %}
+    <h1>Установка холодильников</h1>
+
+    {% if message %}
+        <div style="color: red; font-weight: bold;">{{ message }}</div>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('lab4.set_temperature') }}">
+        <input type="number" name="temperature" placeholder="Укажите температуру" required>
+        <input type="submit" value="Установить">
+    </form>
+{% endblock %}
+
