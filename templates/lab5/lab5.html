@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Санданова Виктория. {% block lab %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='static\favicon.jpg') }}" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1>База знаний</h1>
+        <nav>
+            <ul>
+                <div class="box">
+                <li><a href="{{ url_for('lab5.login') }}">Вход</a></li>
+                <li><a href="{{ url_for('lab5.register') }}">Регистрация</a></li>
+                <li><a href="{{ url_for('lab5.list_articles') }}">Список статей</a></li>
+                <li><a href="{{ url_for('lab5.create_article') }}">Создать статью</a></li>
+                <li>Anonymous</li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Страница входа</h2>
+        <div class="box"> <!-- Добавляем оболочку для белой рамки -->
+            <!-- Здесь будет форма входа -->
+        </div>
+        <div class="header-box"> <!-- Для элемента сверху с белой рамкой -->
+            <h3>Меню</h3>
+        </div>
+    </main>
+</body>
+</html>
