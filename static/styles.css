@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Цвет фона страницы */
+}
+
+header {
+    background-color: white; /* Серый фон для заголовка */
+    padding: 10px 0;
+}
+
+h1 {
+    text-align: left; /* Выравнивание заголовка по правой стороне */
+    margin-right: 20px;
+    background-color: #f4f4f4; 
+
+}
+
+nav {
+    text-align: right; /* Выравнивание меню по правой стороне */
+}
+
+ul {
+    list-style: none; /* Убираем маркеры списка */
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    display: inline; /* Горизонтальное расположение элементов меню */
+    margin: 0 15px; /* Отступы между элементами */
+}
+
+a {
+    text-decoration: none; /* Убираем подчеркивание у ссылок */
+    padding: 10px 15px; /* Отступы внутри ссылок */
+    color: black; /* Цвет текста ссылок */
+}
+
+main {
+    padding: 20px;
+}
+
+.box {
+    background-color: #87d6f0; /* Голубая рамка */
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.header-box {
+    border: 2px solid white; /* Белая рамка */
+    padding: 10px;
+    background-color: white; /* Белый фон для элемента сверху */
+}
