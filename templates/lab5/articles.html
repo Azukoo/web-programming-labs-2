@@ -11,8 +11,12 @@
         {% for article in articles %}  
             <h2>{{ article['title'] }}</h2>
             <blockquote>{{ article['article_text'] }}</blockquote>
-            <a href="{{ url_for('edit', article_id=article['id']) }}">Редактировать</a>
-            <a href="{{ url_for('delete', article_id=article['id']) }}" onclick="return confirm('Вы уверены, что хотите удалить эту статью?');">Удалить</a>
+            <a href="{{ url_for('lab5.edit') }}">Редактировать</a>
+            <form method="POST" action="{{ url_for('lab5.delete') }}">
+                <input type="hidden" name="article_id" value="{{article['id']}}">
+                <button onclick="return confirm('Вы уверены, что хотите удалить эту статью?');">Удалить
+                </button>
+            </form>
         {% endfor %}
     {% endif %}  
       
