@@ -168,7 +168,7 @@ def edit(article_id):
 
     conn, cur = db_connect()
 
-    # Получаем статью для редактирования
+    
     if current_app.config['DB_TYPE'] == 'postgres':
         cur.execute("SELECT * FROM articles WHERE id=%s;", (article_id,))
     else:
@@ -186,11 +186,11 @@ def edit(article_id):
     title = request.form.get('title')
     article_text = request.form.get('article_text')
 
-    # Проверка на ошибки
+    
     if not title or not article_text:
         return render_template('lab5/edit_article.html', article=article, title_error="Название или текст не могут быть пустыми.")
     
-    # Обновляем статью
+    
     if current_app.config['DB_TYPE'] == 'postgres':
         cur.execute("UPDATE articles SET title=%s, article_text=%s WHERE id=%s;", (title, article_text, article_id))
     else:
@@ -199,12 +199,13 @@ def edit(article_id):
     db_close(conn, cur)
     return redirect('/lab5/list')
 
-@lab5.route('/lab5/delete', methods=['GET'])
-def delete(article_id):
+@lab5.route('/lab5/delete/', methods=['POST'])
+def delete():
     login = session.get('login')
     if not login:
         return redirect('/lab5/login')
 
+    article_id=request.form.get("article_id")
     conn, cur = db_connect()
 
     if current_app.config['DB_TYPE'] == 'postgres':
