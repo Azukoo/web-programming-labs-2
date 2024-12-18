@@ -72,7 +72,7 @@ def api():
                         'jsonrpc': '2.0',
                         'error': {
                             'code': 4,
-                            'message': 'Cannot cancel another user\'s booking'
+                            'message': 'Вы не авторизованы, пожалуйста, авторизуйтесь'
                         },
                         'id': id
                     }
@@ -80,7 +80,7 @@ def api():
                 office['tenant'] = ''
                 return {
                     'jsonrpc': '2.0',
-                    'result': 'Booking cancelled',
+                    'result': 'Офис уже арендуется',
                     'id': id
                 }
 
