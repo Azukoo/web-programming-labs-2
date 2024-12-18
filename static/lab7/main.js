@@ -6,7 +6,7 @@ function fillFilmList() {
     .then(function (films) {
         let tbody = document.getElementById('film-list');
         tbody.innerHTML = '';
-        for(let i = 0; i<films.lenght; i++) {
+        for(let i = 0; i<films.length; i++) {
             let tr = document.createElement('tr');
 
             let tdTitle = document.createElement('td');
@@ -64,7 +64,7 @@ function cancel() {
 function addFilm() {
     document.getElementById('id').value = '';
     document.getElementById('title').value = '';
-    document.getElementById('title-rus').value = '';
+    document.getElementById('title-ru').value = '';
     document.getElementById('year').value = '';
     document.getElementById('description').value = '';
     showModal();
@@ -73,7 +73,7 @@ function addFilm() {
 function sendFilm() {
     const film = {
         title: document.getElementById('title').value,
-        title_ru: document.getElementById('title_ru').value,
+        title_ru: document.getElementById('title-ru').value,
         year: document.getElementById('year').value,
         description: document.getElementById('description').value
     }
