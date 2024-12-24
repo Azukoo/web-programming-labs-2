@@ -54,6 +54,7 @@ function deleteFilm(id, title) {
 }
 
 function showModal() {
+    document.getElementById('description-error').innerText = '';
     document.querySelector('div.modal').style.display = 'block';
 }
 function hideModal() {
@@ -75,12 +76,22 @@ function addFilm() {
 
 function sendFilm() {
     const id = document.getElementById('id').value;
-    const film = {
-        title: document.getElementById('title').value,
-        title_ru: document.getElementById('title-ru').value,
-        year: document.getElementById('year').value,
-        description: document.getElementById('description').value
+    const title = document.getElementById('title').value;
+    const titleRu = document.getElementById('title-ru').value;
+    const year = document.getElementById('year').value;
+    const description = document.getElementById('description').value;
+
+    if (!title.trim()) {
+        document.getElementById('description-error').innerText = 'Название фильма обязательно для заполнения.';
+        return; 
     }
+
+    const film = {
+        title: title,
+        title_ru: titleRu,
+        year: year,
+        description: description
+    };
 
     const url = `/lab7/rest-api/films/${id}`;
     const method = id === '' ? 'POST' : 'PUT';
@@ -90,9 +101,16 @@ function sendFilm() {
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(film)
     })
-    .then(function() {
-        fillFilmList();
-        hideModal();
+    .then(function(resp) {
+        if(resp.ok) {
+            fillFilmList();
+            hideModal();
+            return {};
+        }
+        return resp.json();
+    })
+    .then(function(errors) {
+        document.getElementById('description-error').innerText = errors.description || '';
     });
 }
 
@@ -107,6 +125,7 @@ function editFilm(id) {
         document.getElementById('title-ru').value = film.title_ru;
         document.getElementById('year').value = film.year;
         document.getElementById('description').value = film.description;
+        document.getElementById('description-error').innerText = '';
         showModal();
-    })
+    });
 }
