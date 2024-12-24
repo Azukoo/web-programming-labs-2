@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, abort
+from flask import Blueprint, render_template, request, abort, jsonify, make_response
 
 lab7 = Blueprint('lab7', __name__)
 
@@ -62,8 +62,7 @@ films = [
 
 @lab7.route('/lab7/rest-api/films/', methods=['GET'])
 def get_films():
-    return films
-
+    return jsonify(films)
 
 @lab7.route('/lab7/rest-api/films/<int:id>', methods=['GET'])
 def get_film(id):
@@ -80,24 +79,53 @@ def del_film(id):
     return '', 204
 
 
-@lab7.route('/lab7/rest-api/films/<int:id>', methods=['PUT'])
-def put_film(id):
-    if id < 0 or id >= len(films):
-        abort(404)
-    film = request.get_json()
-    films[id] = film
-    return films[id]
-
-
 @lab7.route('/lab7/rest-api/films/', methods=['POST'])
 def add_film():
-    film = request.get_json()  
-    films.append(film)          
-    return {'id': len(films) - 1} 
-
+    data = request.get_json()
+    title = data.get('title', '').strip()
+    title_ru = data.get('title_ru', '').strip()
+    year = data.get('year')
+    description = data.get('description', '')
     
-   
-
-
+    if not description:
+        return {'description': 'Заполните описание'}, 400
     
+    if not title and title_ru:
+        title = title_ru
 
+    new_film = {
+        "title": title,
+        "title_ru": title_ru,
+        "year": year,
+        "description": description
+    }
+
+    films.append(new_film)
+    return jsonify(new_film), 201
+
+@lab7.route('/lab7/rest-api/films/<int:id>', methods=['PUT'])
+def update_film(id):
+    if id < 0 or id >= len(films):
+        abort(404)
+
+    data = request.get_json()
+    
+    title = data.get('title', '').strip()
+    title_ru = data.get('title_ru', '').strip()
+    year = data.get('year', films[id]['year'])  # Сохраняем старое значение, если новое не передано
+    description = data.get('description', films[id]['description'])
+
+    if not description:
+        return {'description': 'Заполните описание'}, 400
+    
+    if not title and title_ru:
+        title = title_ru
+
+    # Обновляем фильм
+    films[id] = {
+        "title": title,
+        "title_ru": title_ru,
+        "year": year,
+        "description": description
+    }
+    return jsonify(films[id])  # Возвращаем обновленный фильм
